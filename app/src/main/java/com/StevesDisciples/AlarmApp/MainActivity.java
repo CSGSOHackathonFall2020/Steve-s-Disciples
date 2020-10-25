@@ -2,28 +2,10 @@ package com.StevesDisciples.AlarmApp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import com.StevesDisciples.AlarmApp.spotify.util.SpotifyUtil;
-import com.StevesDisciples.SpotifyApi.remote.SpotifyRemote;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-import com.spotify.android.appremote.api.SpotifyAppRemote;
-import com.spotify.sdk.android.authentication.AuthenticationClient;
-import com.spotify.sdk.android.authentication.AuthenticationRequest;
-import com.spotify.sdk.android.authentication.AuthenticationResponse;
-
-import android.os.Build;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TimePicker;
@@ -31,6 +13,12 @@ import android.widget.TimePicker;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import com.StevesDisciples.AlarmApp.spotify.util.SpotifyUtil;
+import com.StevesDisciples.SpotifyApi.remote.SpotifyRemote;
+import com.spotify.sdk.android.authentication.AuthenticationClient;
+import com.spotify.sdk.android.authentication.AuthenticationRequest;
+import com.spotify.sdk.android.authentication.AuthenticationResponse;
 
 import java.util.Date;
 import java.util.Random;
@@ -46,8 +34,10 @@ public class MainActivity extends AppCompatActivity {
     Button setDate ;
     EditText title ;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.alarm_create);
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -61,8 +51,14 @@ public class MainActivity extends AppCompatActivity {
         setDate = findViewById(R.id.setDate);
         title = findViewById(R.id.alarmTitle);
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    private void scheduleAlarm() {
+        scheduleAlarm();
+
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    private void scheduleAlarm()
+    {
         int alarmId = new Random().nextInt(Integer.MAX_VALUE);
 
         Alarm alarm = new Alarm(
@@ -76,46 +72,48 @@ public class MainActivity extends AppCompatActivity {
         alarm.schedule(getApplicationContext());
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
+        @Override
+        public boolean onCreateOptionsMenu (Menu menu)
+        {
+            // Inflate the menu; this adds items to the action bar if it is present.
+            getMenuInflater().inflate(R.menu.menu_main, menu);
+            return true;
+        }
 
-    public static void authenticate(Activity activity) {
-        AuthenticationRequest.Builder builder =
-                new AuthenticationRequest.Builder(CLIENT_ID, AuthenticationResponse.Type.TOKEN, REDIRECT_URI);
+        public static void authenticate (Activity activity){
+            AuthenticationRequest.Builder builder =
+                    new AuthenticationRequest.Builder(CLIENT_ID, AuthenticationResponse.Type.TOKEN, REDIRECT_URI);
 
-        builder.setScopes(new String[]{"streaming"});
-        AuthenticationRequest request = builder.build();
+            builder.setScopes(new String[]{"streaming"});
+            AuthenticationRequest request = builder.build();
 
-        AuthenticationClient.openLoginActivity(activity, REQUEST_CODE, request);
-    }
+            AuthenticationClient.openLoginActivity(activity, REQUEST_CODE, request);
+        }
 
-    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        super.onActivityResult(requestCode, resultCode, intent);
+        public void onActivityResult ( int requestCode, int resultCode, Intent intent){
+            super.onActivityResult(requestCode, resultCode, intent);
 
-        // Check if result comes from the correct activity
-        if (requestCode == REQUEST_CODE) {
-            AuthenticationResponse response = AuthenticationClient.getResponse(resultCode, intent);
+            // Check if result comes from the correct activity
+            if (requestCode == REQUEST_CODE) {
+                AuthenticationResponse response = AuthenticationClient.getResponse(resultCode, intent);
 
-            switch (response.getType()) {
-                // Response was successful and contains auth token
-                case TOKEN:
-                    Log.d("MainActivity", "A token was received");
-                    SpotifyUtil spotifyUtil = new SpotifyUtil(response.getAccessToken());
-                    break;
+                switch (response.getType()) {
+                    // Response was successful and contains auth token
+                    case TOKEN:
+                        Log.d("MainActivity", "A token was received");
+                        SpotifyUtil spotifyUtil = new SpotifyUtil(response.getAccessToken());
+                        break;
 
-                // Auth flow returned an error
-                case ERROR:
-                    Log.e("MainActivity", "An error occured");
-                    break;
+                    // Auth flow returned an error
+                    case ERROR:
+                        Log.e("MainActivity", "An error occured");
+                        break;
 
-                // Most likely auth flow was cancelled
-                default:
-                    // Handle other cases
-                    Log.i("MainActivity", "Other case");
+                    // Most likely auth flow was cancelled
+                    default:
+                        // Handle other cases
+                        Log.i("MainActivity", "Other case");
+                }
             }
         }
 }

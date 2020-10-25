@@ -30,7 +30,7 @@ public class Alarm {
         this.title = title;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     public void schedule(Context context)
     {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
@@ -60,6 +60,8 @@ public class Alarm {
         if (calendar.getTimeInMillis() <= System.currentTimeMillis()) {
             calendar.set(Calendar.DAY_OF_MONTH, calendar.get(Calendar.DAY_OF_MONTH) + 1);
         }
+        AlarmManager.AlarmClockInfo info = new AlarmManager.AlarmClockInfo(calendar.getTimeInMillis() , alarmPendingIntent);
+        alarmManager.setAlarmClock(info, alarmPendingIntent);
 
 //        if (!recurring) {
 //            String toastText = null;
