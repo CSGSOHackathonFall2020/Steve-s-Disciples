@@ -3,6 +3,7 @@ package com.StevesDisciples.AlarmApp;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.VibrationEffect;
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity
     Button setDate;
     EditText title;
     Button maybeButton;
+    MediaPlayer mediaPlayer;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -64,6 +66,9 @@ public class MainActivity extends AppCompatActivity
                 remote.connectAppRemote(MainActivity.this);
                 Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                 v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+//                mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw);
+//                mediaPlayer.start();
+
             }
         });
 
