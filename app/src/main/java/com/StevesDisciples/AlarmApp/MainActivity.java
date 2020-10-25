@@ -8,6 +8,8 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.spotify.sdk.android.authentication.LoginActivity;
+
 import android.view.View;
 
 import android.view.Menu;
@@ -21,8 +23,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        Spotify spotify = new Spotify();
-        spotify.connect(this);
+
+        SpotifyHelper.authenticate(this);
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
