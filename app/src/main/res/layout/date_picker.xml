@@ -6,12 +6,26 @@
     android:layout_height="match_parent"
     tools:context=".DatePickerFragment">
 
-    <Button
-        android:id="@+id/button_second"
+    <DatePicker
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/previous"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.1">
+
+    </DatePicker>
+
+    <Button
+        android:id="@+id/confirmDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="132dp"
+        android:layout_marginRight="132dp"
+        android:layout_marginBottom="112dp"
+        android:text="Confirm Date"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

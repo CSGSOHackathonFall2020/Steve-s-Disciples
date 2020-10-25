@@ -7,24 +7,15 @@ import com.spotify.android.appremote.api.ConnectionParams;
 import com.spotify.android.appremote.api.Connector;
 import com.spotify.android.appremote.api.SpotifyAppRemote;
 
+import com.spotify.protocol.client.Subscription;
+import com.spotify.protocol.types.PlayerState;
+import com.spotify.protocol.types.Track;
+
 public class SpotifyRemote {
-    /**
-     *
-     */
     private static final String CLIENT_ID = "506d2499036447adbf170c0fb14e552f";
-    /**
-     *
-     */
     private static final String REDIRECT_URI = "https://google.com";
-    /**
-     *
-     */
     private SpotifyAppRemote mSpotifyAppRemote;
 
-    /**
-     *
-     * @param ctx
-     */
     public void connectAppRemote(Context ctx) {
         ConnectionParams connectionParams =
                 new ConnectionParams.Builder(CLIENT_ID)
@@ -51,9 +42,6 @@ public class SpotifyRemote {
                 });
     }
 
-    /**
-     *
-     */
     public void playPlaylist() {
         mSpotifyAppRemote.getPlayerApi().play("spotify:playlist:37i9dQZF1DX2sUQwD7tbmL");
     }
