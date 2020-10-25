@@ -1,0 +1,79 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TimePicker
+        android:id="@+id/alarmTimePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="0dp" />
+
+    <Button
+        android:id="@+id/confirmAlarm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="126dp"
+        android:layout_marginRight="126dp"
+        android:layout_marginBottom="61dp"
+        android:text="Confirm Alarm" />
+
+    <TextView
+        android:id="@+id/labelSetDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/confirmAlarm"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="241dp"
+        android:layout_marginRight="241dp"
+        android:layout_marginBottom="153dp"
+        android:text="Set Date: "
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+    <TextView
+        android:id="@+id/labelNameAlarm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/confirmAlarm"
+        android:layout_marginBottom="93dp"
+        android:text="Name your alarm"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+
+<!--    <DatePicker-->
+<!--        android:layout_width=""-->
+<!--        android:layout_height=""-->
+
+    <EditText
+        android:id="@+id/alarmTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/confirmAlarm"
+        android:layout_marginStart="17dp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginBottom="83dp"
+        android:layout_toEndOf="@+id/labelNameAlarm"
+        android:layout_toRightOf="@+id/labelNameAlarm"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name Alarm" />
+
+    <Button
+        android:id="@+id/setDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/alarmTitle"
+        android:layout_alignRight="@+id/alarmTitle"
+        android:layout_alignBottom="@+id/confirmAlarm"
+        android:layout_marginEnd="68dp"
+        android:layout_marginRight="68dp"
+        android:layout_marginBottom="190dp"
+        android:text="Set Date" />
+
+
+</RelativeLayout>

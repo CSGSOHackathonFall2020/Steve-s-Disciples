@@ -37,7 +37,7 @@ public class Spotify {
 
             @Override
             public void onFailure(Throwable throwable) {
-                Log.e("Spotify.connect", "Failed to connect");
+                Log.e("Spotify.connect", throwable.getMessage()+"");
 
                 // display error on user interface
             }
